@@ -1,17 +1,19 @@
 const hero = document.getElementById("hero");
 
-function updateHeroPosition() {
-    const height = hero.getBoundingClientRect().height;
+const collapsePoint = 260;
 
-    // Move upward by at most 50% of the hero height.
-    const maximumMovement = height * 0.50;
-
-    document.documentElement.style.setProperty(
-        "--hero-top",
-        `-${maximumMovement}px`
-    );
+function updateHeroState() {
+    if (window.scrollY >= collapsePoint) {
+        hero.classList.add("is-compact");
+    } else {
+        hero.classList.remove("is-compact");
+    }
 }
 
-updateHeroPosition();
+updateHeroState();
 
-window.addEventListener("resize", updateHeroPosition);
+window.addEventListener(
+    "scroll",
+    updateHeroState,
+    { passive: true }
+);
