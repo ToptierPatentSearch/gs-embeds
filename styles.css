@@ -1,7 +1,3 @@
-:root {
-    --hero-top: -300px;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -17,19 +13,26 @@ body {
     color: #17324d;
 }
 
+
+/* =========================
+   HERO
+   ========================= */
+
 .hero {
     position: sticky;
-    top: var(--hero-top);
+    top: 0;
 
     z-index: 100;
 
-    min-height: 620px;
+    height: 620px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     text-align: center;
+
+    overflow: hidden;
 
     background:
         linear-gradient(
@@ -40,11 +43,27 @@ body {
 
     background-size: cover;
     background-position: center;
+
+    transition:
+        height 0.35s ease,
+        box-shadow 0.35s ease;
 }
+
+
+/* =========================
+   LARGE HERO CONTENT
+   ========================= */
 
 .hero-content {
     width: min(900px, 90%);
     padding: 50px 20px;
+
+    opacity: 1;
+    transform: translateY(0);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.35s ease;
 }
 
 .hero h1 {
@@ -67,15 +86,73 @@ body {
     color: #6258e8;
 }
 
+
+/* =========================
+   COMPACT BRAND
+   ========================= */
+
+.compact-brand {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+
+    font-size: 26px;
+    font-weight: 700;
+
+    color: #0c4788;
+
+    opacity: 0;
+    transform: translateY(12px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.35s ease;
+}
+
+
+/* =========================
+   COLLAPSED STATE
+   ========================= */
+
+.hero.is-compact {
+    height: 110px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.hero.is-compact .hero-content {
+    opacity: 0;
+    transform: translateY(-40px);
+
+    pointer-events: none;
+}
+
+.hero.is-compact .compact-brand {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================
+   PAGE CONTENT
+   ========================= */
+
 .page-content {
     position: relative;
     z-index: 10;
 
     background: #ffffff;
 
-    /*
-      Deliberately long for the first scrolling test.
-    */
     min-height: 1800px;
 }
 
@@ -90,9 +167,19 @@ body {
     color: #0c4788;
 }
 
+
+/* =========================
+   MOBILE
+   ========================= */
+
 @media (max-width: 700px) {
+
     .hero {
-        min-height: 500px;
+        height: 500px;
+    }
+
+    .hero.is-compact {
+        height: 90px;
     }
 
     .hero h1 {
@@ -101,5 +188,9 @@ body {
 
     .hero p {
         font-size: 15px;
+    }
+
+    .compact-brand {
+        font-size: 21px;
     }
 }
