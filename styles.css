@@ -1,28 +1,5 @@
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    font-family: "Montserrat", Arial, sans-serif;
-    background: #ffffff;
-    color: #17324d;
-}
-
-
-/* =========================
-   HERO
-   ========================= */
-
 .hero {
-    position: sticky;
-    top: 0;
-
-    z-index: 100;
+    position: relative;
 
     height: 620px;
 
@@ -31,8 +8,6 @@ body {
     align-items: center;
 
     text-align: center;
-
-    overflow: hidden;
 
     background:
         linear-gradient(
@@ -43,154 +18,45 @@ body {
 
     background-size: cover;
     background-position: center;
-
-    transition:
-        height 0.35s ease,
-        box-shadow 0.35s ease;
 }
 
+.compact-header {
+    position: fixed;
 
-/* =========================
-   LARGE HERO CONTENT
-   ========================= */
-
-.hero-content {
-    width: min(900px, 90%);
-    padding: 50px 20px;
-
-    opacity: 1;
-    transform: translateY(0);
-
-    transition:
-        opacity 0.25s ease,
-        transform 0.35s ease;
-}
-
-.hero h1 {
-    margin: 0;
-
-    font-size: clamp(42px, 6vw, 68px);
-    line-height: 1.28;
-
-    font-weight: 700;
-    color: #0c4788;
-}
-
-.hero p {
-    max-width: 760px;
-    margin: 28px auto 0;
-
-    font-size: clamp(15px, 1.6vw, 19px);
-    line-height: 1.55;
-
-    color: #6258e8;
-}
-
-
-/* =========================
-   COMPACT BRAND
-   ========================= */
-
-.compact-brand {
-    position: absolute;
-
+    top: 0;
     left: 0;
     right: 0;
+
+    height: 110px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    height: 100%;
+    z-index: 1000;
 
     font-size: 26px;
     font-weight: 700;
-
     color: #0c4788;
 
+    background: rgba(255,255,255,0.96);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.12);
+
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(-100%);
 
     pointer-events: none;
 
     transition:
         opacity 0.25s ease,
-        transform 0.35s ease;
+        transform 0.25s ease;
 }
 
-
-/* =========================
-   COLLAPSED STATE
-   ========================= */
-
-.hero.is-compact {
-    height: 110px;
-
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.12);
-}
-
-.hero.is-compact .hero-content {
-    opacity: 0;
-    transform: translateY(-40px);
-
-    pointer-events: none;
-}
-
-.hero.is-compact .compact-brand {
+.compact-header.is-visible {
     opacity: 1;
     transform: translateY(0);
-}
 
-
-/* =========================
-   PAGE CONTENT
-   ========================= */
-
-.page-content {
-    position: relative;
-    z-index: 10;
-
-    background: #ffffff;
-
-    min-height: 1800px;
-}
-
-.page-content section {
-    max-width: 1100px;
-    margin: auto;
-    padding: 80px 30px;
-}
-
-.page-content h2 {
-    font-size: 36px;
-    color: #0c4788;
-}
-
-
-/* =========================
-   MOBILE
-   ========================= */
-
-@media (max-width: 700px) {
-
-    .hero {
-        height: 500px;
-    }
-
-    .hero.is-compact {
-        height: 90px;
-    }
-
-    .hero h1 {
-        font-size: 40px;
-    }
-
-    .hero p {
-        font-size: 15px;
-    }
-
-    .compact-brand {
-        font-size: 21px;
-    }
+    pointer-events: auto;
 }
