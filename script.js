@@ -1,19 +1,27 @@
-const hero = document.getElementById("hero");
+const compactHeader = document.getElementById("compactHeader");
 
-const collapsePoint = 260;
+const showPoint = 300;
+const hidePoint = 180;
 
-function updateHeroState() {
-    if (window.scrollY >= collapsePoint) {
-        hero.classList.add("is-compact");
-    } else {
-        hero.classList.remove("is-compact");
+let visible = false;
+
+function updateHeader() {
+
+    if (!visible && window.scrollY >= showPoint) {
+        visible = true;
+        compactHeader.classList.add("is-visible");
+    }
+
+    if (visible && window.scrollY <= hidePoint) {
+        visible = false;
+        compactHeader.classList.remove("is-visible");
     }
 }
 
-updateHeroState();
+updateHeader();
 
 window.addEventListener(
     "scroll",
-    updateHeroState,
+    updateHeader,
     { passive: true }
 );
