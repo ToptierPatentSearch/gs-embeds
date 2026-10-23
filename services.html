@@ -1,0 +1,24 @@
+---
+title: Patent Search Services
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }}</title>
+</head>
+<body>
+
+<h1>Patent Search Services</h1>
+
+{% assign services = "Prior Art,FTO,Invalidity" | split: "," %}
+
+<ul>
+  {% for service in services %}
+    <li>{{ service }}</li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>
