@@ -1,79 +1,65 @@
+
 ---
 title: Patent Search Services
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ page.title }}</title>
+  <meta charset="UTF-8">
+  <title>{{ page.title }}</title>
 
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    padding: 24px;
-    color: #24364b;
-    background: #f5f7fa;
-  }
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
 
-  .service-grid {
-    display: grid;
-    grid-template-columns:
-      repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-  }
+    .service-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
-  .service-card {
-    padding: 24px;
-    background: white;
-    border: 1px solid #dce3ec;
-    border-radius: 10px;
-  }
-
-  .service-card a {
-    color: #1768ac;
-    font-weight: bold;
-  }
-</style>
+    .service-card {
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 20px;
+    }
+  </style>
 </head>
 
 <body>
-<h1>Professional Patent Search Services</h1>
+  <h1>{{ page.title }}</h1>
 
-{% assign services = "Prior Art,FTO,Invalidity" | split: "," %}
+  {% assign services =
+    "Prior Art,FTO,Invalidity" | split: "," %}
 
-<div class="service-grid">
-  {% for service in services %}
-    <article class="service-card">
+  <div class="service-grid">
 
-      <h2>{{ service }}</h2>
+    {% for service in services %}
 
       {% case service %}
         {% when "Prior Art" %}
-          <p>Discover relevant patent publications.</p>
+          {% assign description =
+            "Identify relevant prior art." %}
+
         {% when "FTO" %}
-          <p>Investigate potential patent barriers.</p>
+          {% assign description =
+            "Investigate patent-related market risks." %}
+
         {% when "Invalidity" %}
-          <p>Identify potentially invalidating prior art.</p>
+          {% assign description =
+            "Locate evidence relevant to patent validity." %}
       {% endcase %}
 
-      <a href="#{{ service | slugify }}">
-        View details
-      </a>
+      <article class="service-card">
+        <h2>{{ service | escape }}</h2>
+        <p>{{ description | escape }}</p>
+      </article>
 
-    </article>
-  {% endfor %}
-</div>
+    {% endfor %}
 
-<h2>Service Details</h2>
-
-{% for service in services %}
-  <section id="{{ service | slugify }}">
-    <h3>{{ service }}</h3>
-    <p>Contact us to discuss your {{ service }} search.</p>
-  </section>
-{% endfor %}
-
+  </div>
 </body>
 </html>
