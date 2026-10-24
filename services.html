@@ -1,3 +1,4 @@
+
 ---
 title: Patent Search Services
 ---
@@ -5,20 +6,75 @@ title: Patent Search Services
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>{{ page.title }}</title>
-</head>
-<body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page.title }}</title>
 
-<h1>Patent Search Services</h1>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 24px;
+    color: #24364b;
+    background: #f5f7fa;
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns:
+      repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .service-card {
+    padding: 24px;
+    background: white;
+    border: 1px solid #dce3ec;
+    border-radius: 10px;
+  }
+
+  .service-card a {
+    color: #1768ac;
+    font-weight: bold;
+  }
+</style>
+</head>
+
+<body>
+<h1>Professional Patent Search Services</h1>
 
 {% assign services = "Prior Art,FTO,Invalidity" | split: "," %}
 
-<ul>
+<div class="service-grid">
   {% for service in services %}
-    <li>{{ service }}</li>
+    <article class="service-card">
+
+      <h2>{{ service }}</h2>
+
+      {% case service %}
+        {% when "Prior Art" %}
+          <p>Discover relevant patent publications.</p>
+        {% when "FTO" %}
+          <p>Investigate potential patent barriers.</p>
+        {% when "Invalidity" %}
+          <p>Identify potentially invalidating prior art.</p>
+      {% endcase %}
+
+      <a href="#{{ service | slugify }}">
+        View details
+      </a>
+
+    </article>
   {% endfor %}
-</ul>
+</div>
+
+<h2>Service Details</h2>
+
+{% for service in services %}
+  <section id="{{ service | slugify }}">
+    <h3>{{ service }}</h3>
+    <p>Contact us to discuss your {{ service }} search.</p>
+  </section>
+{% endfor %}
 
 </body>
 </html>
