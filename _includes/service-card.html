@@ -1,4 +1,14 @@
-<article>
-  <h2>{{ include.title | escape }}</h2>
-  <p>{{ include.description | escape }}</p>
+
+<article class="service-card">
+  <h2>
+    {{ include.title | default: "Patent Service" | escape }}
+  </h2>
+
+  <p>
+    {{ include.description | default: "Contact us for details." | escape }}
+  </p>
+
+  <a href="{{ '/contact.html' | relative_url }}">
+    Request Information
+  </a>
 </article>
