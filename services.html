@@ -1,27 +1,76 @@
 ---
-title: Patent Search Services
+title: Our Patent Search Services
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{ page.title }}</title>
-<style>
+  <title>{{ page.title | escape }}</title>
+
+  <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 30px;
+      background: #f8fafc;
+      padding: 30px;
+      color: #263747;
     }
-    </style>
+
+    .service-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background: white;
+      padding: 24px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+    }
+
+    .service-card a {
+      color: #2256a5;
+    }
+  </style>
 </head>
+
 <body>
-{% assign company = "Top-tier Patent Search" %}
-{% assign experience = 26 %}
 
-<h1>{{ company }}</h1>
+  <h1>{{ page.title }}</h1>
 
-<p>
-  Over {{ experience }} years of
-  technical translation experience.
-</p>
+  {% assign services = "Prior Art,FTO,Invalidity"
+     | split: "," %}
+
+  <div class="service-grid">
+
+    {% for service in services %}
+
+      {% case service %}
+        {% when "Prior Art" %}
+          {% assign description =
+            "Identify relevant earlier inventions." %}
+
+        {% when "FTO" %}
+          {% assign description =
+            "Investigate relevant patent risks." %}
+
+        {% when "Invalidity" %}
+          {% assign description =
+            "Find evidence relevant to validity." %}
+
+        {% else %}
+          {% assign description =
+            "Contact us for details." %}
+      {% endcase %}
+
+      {% include service-card.html
+         title=service
+         description=description %}
+
+    {% endfor %}
+
+  </div>
+
 </body>
 </html>
