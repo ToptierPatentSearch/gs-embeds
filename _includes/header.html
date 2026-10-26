@@ -1,0 +1,24 @@
+
+<header class="practice-site-header">
+
+  <h1>
+    {{ site.title | default: "Top-tier Patent Search" | escape }}
+  </h1>
+
+  <nav aria-label="Main navigation">
+
+    <a href="{{ '/' | relative_url }}">
+      Home
+    </a>
+
+    <a href="{{ '/services.html' | relative_url }}">
+      Services
+    </a>
+
+    <a href="{{ '/contact.html' | relative_url }}">
+      Contact
+    </a>
+
+  </nav>
+
+</header>
