@@ -1,0 +1,25 @@
+<footer class="practice-site-footer">
+
+  <p>
+    &copy;
+    <span id="practice-current-year"></span>
+    Top-tier Patent Search.
+    All rights reserved.
+  </p>
+
+  <p>
+    Professional Patent Search and
+    Technical Intelligence Services
+  </p>
+
+</footer>
+
+<script>
+  const practiceYearElement =
+    document.getElementById("practice-current-year");
+
+  if (practiceYearElement) {
+    practiceYearElement.textContent =
+      new Date().getFullYear();
+  }
+</script>
