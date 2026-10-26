@@ -1,0 +1,78 @@
+---
+title: Exercise 3 - YAML Data Practice
+layout: null
+permalink: /practice/data-services.html
+---
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+
+  <title>{{ page.title | escape }}</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      color: #263747;
+      background: #f8fafc;
+      padding: 30px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      padding: 24px;
+      background: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+    }
+
+    .service-card a {
+      color: #2256a5;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>{{ page.title | escape }}</h1>
+
+  <h2>Part A: Read YAML Data</h2>
+
+  <p>
+    Number of services:
+    {{ site.data.services | size }}
+  </p>
+
+  <h2>Part B: Display Service Names</h2>
+
+  <ul>
+    {% for service in site.data.services %}
+      <li>{{ service.name | escape }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Part C: Generate Service Cards</h2>
+
+  <div class="service-grid">
+
+    {% for service in site.data.services %}
+
+      {% include service-card.html
+         title=service.name
+         description=service.description %}
+
+    {% endfor %}
+
+  </div>
+
+</body>
+</html>
