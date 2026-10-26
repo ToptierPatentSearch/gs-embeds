@@ -1,21 +1,98 @@
 ---
-title: Liquid Practice
+title: Reusable Service Cards Practice
+layout: null
+permalink: /practice/services-demo.html
 ---
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+
+  <title>{{ page.title | escape }}</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      color: #263747;
+      background: #f8fafc;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 35px;
+    }
+
+    .service-card {
+      padding: 24px;
+      background: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+    }
+
+    .service-card a {
+      color: #2256a5;
+    }
+  </style>
+</head>
+
 <body>
 
-<h1>{{ page.title }}</h1>
+  <h1>{{ page.title | escape }}</h1>
 
-{% assign services = "Prior Art,FTO,Invalidity" | split: "," %}
+  <h2>Part A: Reusable Cards in a Loop</h2>
 
-{% for service in services %}
+  {% assign services = "Prior Art,FTO,Invalidity" | split: "," %}
 
-  {% include service-card.html
-     title=service
-     description="Professional patent search service" %}
+  <div class="service-grid">
 
-{% endfor %}
+    {% for service in services %}
+
+      {% include service-card.html
+         title=service
+         description="Professional patent search service" %}
+
+    {% endfor %}
+
+  </div>
+
+  <h2>Part B: Different Parameters</h2>
+
+  <div class="service-grid">
+
+    {% include service-card.html
+       title="Patent Landscape"
+       description="Analyze patent activity and trends." %}
+
+    {% include service-card.html
+       title="Patentability"
+       description="Investigate novelty and inventive step." %}
+
+  </div>
+
+  <h2>Part C: Default Values</h2>
+
+  <div class="service-grid">
+
+    {% include service-card.html %}
+
+  </div>
+
+  <h2>Part D: HTML Escaping</h2>
+
+  <div class="service-grid">
+
+    {% include service-card.html
+       title="<em>FTO</em>"
+       description="HTML tags should appear as text." %}
+
+  </div>
 
 </body>
 </html>
