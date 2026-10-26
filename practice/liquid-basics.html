@@ -1,0 +1,59 @@
+
+---
+title: Liquid Fundamentals Practice
+layout: null
+permalink: /practice/liquid-basics.html
+---
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+
+  <title>{{ page.title | escape }}</title>
+</head>
+
+<body>
+
+  <h1>{{ page.title | escape }}</h1>
+
+  {% assign services = "Prior Art,FTO,Invalidity" | split: "," %}
+
+  <h2>Exercise A: Array and Size</h2>
+
+  <p>
+    Number of services: {{ services | size }}
+  </p>
+
+  <h2>Exercise B: For Loop</h2>
+
+  <ul>
+    {% for service in services %}
+      <li>
+        {{ forloop.index }}. {{ service | escape }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h2>Exercise C: Conditional Statement</h2>
+
+  {% for service in services %}
+
+    {% if service == "FTO" %}
+      <p>
+        FTO means Freedom to Operate.
+      </p>
+    {% endif %}
+
+  {% endfor %}
+
+  <h2>Exercise D: Filter</h2>
+
+  <p>
+    {{ "patent intelligence" | upcase }}
+  </p>
+
+</body>
+</html>
