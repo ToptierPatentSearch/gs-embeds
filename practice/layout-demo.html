@@ -1,0 +1,50 @@
+
+---
+layout: default
+title: Shared Layout Demonstration
+permalink: /practice/layout-demo.html
+---
+
+<section>
+
+  <h1>Exercise 4: Shared Jekyll Layout</h1>
+
+  <p>
+    This webpage uses the reusable
+    default.html layout.
+  </p>
+
+  <h2>Test A: Page Metadata</h2>
+
+  <p>
+    Page title: {{ page.title | escape }}
+  </p>
+
+  <h2>Test B: Shared Header</h2>
+
+  <p>
+    The navigation above comes from
+    _includes/header.html.
+  </p>
+
+  <h2>Test C: Shared Footer</h2>
+
+  <p>
+    The copyright information below comes from
+    _includes/footer.html.
+  </p>
+
+  <h2>Test D: Dynamic YAML Data</h2>
+
+  <p>
+    Number of patent-search services:
+    {{ site.data.services | size }}
+  </p>
+
+  <ul>
+    {% for service in site.data.services %}
+      <li>{{ service.name | escape }}</li>
+    {% endfor %}
+  </ul>
+
+</section>
